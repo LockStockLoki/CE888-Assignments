@@ -1,0 +1,80 @@
+%template for producing IEEE-format articles using LaTeX.
+%written by Matthew Ward, CS Department, Worcester Polytechnic Institute.
+%use at your own risk.  Complaints to /dev/null.
+%make two column with no page numbering, default is 10 point
+\documentstyle[twocolumn]{article}
+\pagestyle{empty}
+
+%set dimensions of columns, gap between columns, and space between paragraphs
+\setlength{\textheight}{8.75in}
+\setlength{\columnsep}{2.0pc}
+\setlength{\textwidth}{6.8in}
+\setlength{\footheight}{0.0in}
+\setlength{\topmargin}{0.25in}
+\setlength{\headheight}{0.0in}
+\setlength{\headsep}{0.0in}
+\setlength{\oddsidemargin}{-.19in}
+\setlength{\parindent}{1pc}
+
+\makeatletter
+
+\def\@normalsize{\@setsize\normalsize{12pt}\xpt\@xpt
+\abovedisplayskip 10pt plus2pt minus5pt\belowdisplayskip \abovedisplayskip
+\abovedisplayshortskip \z@ plus3pt\belowdisplayshortskip 6pt plus3pt
+minus3pt\let\@listi\@listI} 
+
+\def\subsize{\@setsize\subsize{12pt}\xipt\@xipt}
+
+\def\section{\@startsection {section}{1}{\z@}{24pt plus 2pt minus 2pt}
+{12pt plus 2pt minus 2pt}{\large\bf}}
+
+\def\subsection{\@startsection {subsection}{2}{\z@}{12pt plus 2pt minus 2pt}
+{12pt plus 2pt minus 2pt}{\subsize\bf}}
+\makeatother
+
+\begin{document}
+\date{}
+
+%make title bold and 14 pt font (Latex default is non-bold, 16 pt)
+\title{\Large\bf MCTS}
+
+\author{Robert Marc James-Stroud \\
+School of Computer Science and Electronic Engineering \\
+University of Essex \\
+Colchester, CO4 3SQ \\
+rj18801@essex.ac.uk}
+ 
+\maketitle
+\thispagestyle{empty}
+
+\subsection*{\centering Abstract}
+%IEEE allows italicized abstract
+{\em
+To be written.  
+%end italics mode
+}
+
+\section{Introduction}
+
+The Monte Carlo Tree Search (MCTS) is an algorithm for returning a decision by creating a search tree of the domain constructed by taking random samples of the search space.  
+
+\subsection{Previous Work}
+
+
+\begin{thebibliography}{9}
+
+\bibitem{key:mctsSurvey}
+C. Browne, E. Powley, D. Whitehouse, S. Lucas, P. I. Cowling, P. Rohlfshagen, S. Taverner, D. Perez, S. Samothrakis, S. Colton,  
+``A Survey of Montro Carlo Tree Search Methods,'' 
+{\em IEEE Transactions on Computational Intelligence and AI in Games}, Vol. 4, 2012.
+
+
+
+\bibitem{key:mctsTutorial}
+M. C. Fu,
+``Monte Carlo Tree Search: A Tutorial,'' 
+{\em 2018 Winter Simulation Conference}, 2018.
+
+\end{thebibliography}
+
+\end{document}
