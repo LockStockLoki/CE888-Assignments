@@ -96,23 +96,25 @@ MCTS has been applied in co-operative scenarios \cite{b5}, Real-time games \cite
 Game AI research used to focus on two-player zero-sum games of perfect information with alternating turns\cite{b2}, every two-player zero-sum game has a solution \cite{bartle}. Two main ways of evaluating states in a minimax scenario is to use heuristics, or statistics. The statistics approach can utilise MCTS to run thousands of playouts to find the optimal strategy \cite{bartle}.
 
 \subsubsection{Upper Confidence Bounds}
-UCB1 is a bandit algorithm with a logarithmic regret, proposed by Auer {\em et al.} \cite{ucb1}. In a multiarmed bandit problem the `empirically best action' should be taken as often as possible \cite{ucb1}. 
+UCB1 is a bandit algorithm with a logarithmic regret, proposed by Auer {\em et al.} \cite{ucb1}. In a multi-armed bandit problem the `empirically best action' should be taken as often as possible \cite{ucb1}. 
 
 However less explored options should not be ignored in favour of exploitation. Disregarding exploration may leave better actions unexplored and thus increase regret. 
 
 UCB1 policy dictates that arm $j$ maximises the average reward \cite{ucb1}:
 \[UCB1 = \overline{X_{j}} + \sqrt{\frac{2 \ln n}{n_{j}}}\]
 
-Where $\overline{X_{j}}$ is the average reward from arm $j$, $n_{j}$ is the number of times arm $j$ was played and $n$ is the total number of plays.
+where $\overline{X_{j}}$ is the average reward from arm $j$, $n_{j}$ is the number of times arm $j$ was played and $n$ is the total number of plays.
 
 Reward $\overline{X_{j}}$ encourages exploitation of high-reward choices \cite{ucb1} and $\sqrt{\frac{2 \ln n}{2_{j}}}$ encourages exploration of less visited actions \cite{b2}.
 
 \subsubsection{Upper Confidence Bounds for Trees}
-Upper Confidence Bounds for Trees (UCT) is a well known and popular algorithm in the MCTS family \cite{b2}. Kocis and Szepesvari \cite{kocsze} proposed applying UCB1 to MCTS.
+Upper Confidence Bounds for Trees (UCT) is a well known and popular algorithm in the MCTS family \cite{b2}. Kocis and Szepesvari \cite{kocsze} proposed applying UCB1 to MCTS, using UCB1 as the tree policy \cite{b2}.
 
 UCB1 is efficient and simple \cite{b2} and a `promising candidate to address the exploration-exploitation dilemma in MCTS' \cite{b2}.
 
-When an action is selected it can be modelled as a multiarmed bandit problem
+Treating the selection of a child node as a multi-armed bandit problem, using Monte Carlo simulations the the `expected reward can be approximated'. Just as a node can be viewed as a multi-armed bandit problem so to can an action to be selected. Rreated as an independent multi-armed bandit problem the child node $j$ is selected to maximise \cite{b2}:
+\[UCT = \overline{X_{j}} +2C_{p}\sqrt{\frac{2 \ln n}{n_{j}}}\]
+where $C_{p}$ is a constant.
 
 The result of combining UCB1 and MCTS is UCT.
 
