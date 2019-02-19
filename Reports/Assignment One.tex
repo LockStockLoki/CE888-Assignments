@@ -41,8 +41,8 @@ minus3pt\let\@listi\@listI}
 \author{Robert Marc James-Stroud \\
 School of Computer Science and Electronic Engineering \\
 University of Essex \\
-Colchester, CO4 3SQ \\
-rj18801@essex.ac.uk}
+Colchester, UK \\
+Email: rj18801@essex.ac.uk}
  
 \maketitle
 \thispagestyle{empty}
@@ -57,14 +57,16 @@ To be written.
 \section{Introduction}
 Monte Carlo Tree Search (MCTS) has received much interest from researchers in multiple areas, including General Game Playing (GGP) \cite{b1},  where it has been used to great success.
 
-MCTS is an algorithm for returning a decision by creating a search tree of the domain, constructed by taking random samples of the search space. MCTS does not require domain knowledge to function although it may be helpful\cite{b2}.
+MCTS is an algorithm for returning a decision by creating a search tree of the domain, constructed by taking random samples of the search space. MCTS does not require domain knowledge to function although it may be helpful \cite{b2}.
 
-Firstly this paper will look at previous work conducted in the field of Game AI, specifically MCTS. Secondly MCTS will be used in a Noughts and Crosses (also known as Os and Xs, OXO and Tic-Tac-Toe).
+Research into Game AI is important, prior to MCTS databases were used to hold all possible game states. An example of database is presented by \cite{b4}, a game of {\em American Checkers} in which there are 3.9x10$^{13}$ entries. Decision trees used in GGP and General Video Game Playing (GVGP) suffer from dimensionality. A simple game of Noughts and Crosses has a branching factor of 4, and a full tree has 10 levels \cite{bartle}. %compare to chess branching factor of 35, explain why a method of being able to take the human out of crafting rules and letting a machine learn how to play is better, and that it has real world implications.    
+
+Firstly this paper will look at what MCTS is and previous work conducted in the field of Game AI, specifically MCTS. Secondly MCTS will be used in a Noughts and Crosses (also known as Os and Xs, OXO and Tic-Tac-Toe).
 
 \subsection{Monte Carlo Tree Search}
-MCTS is a tree search algorithm that constructs an asymmetric search tree based on actions, the tree is a biased representation towards more promising areas of the search space \cite{b3}.
+MCTS is a tree search algorithm that constructs an asymmetric search tree based on actions, the tree is a biased representation towards more promising areas of the search space \cite{b5}.
 
-Through self-play MCTS estimates the value of a node from that point until it reaches a terminal node \cite{b3}. A node is a state, and the action is the move made that results in that state.  
+Through self-play MCTS estimates the value of a node from that point until it reaches a terminal node \cite{b5}. A node is a state, and the action is the move made that results in that state.  
 
 Each node might be visited multiple times having its value adjusted accordingly. A node that looks promising on the first run through could look less promising as it is visited more times, or become less promising in relation to other branches. 
 
@@ -75,21 +77,21 @@ Each node might be visited multiple times having its value adjusted accordingly.
   \item {\em Backpropogation} - After {\em Simulation} is complete the search tree is traversed in reverse order, propagating up the tree the result, updating the value of the nodes, this continues until the current node is the root node. The new values are then used in the {\em Selection} process.
 \end{enumerate}
 
-MCTS will continue to cycle through these phases until it is stopped. There are three main ways in which this is achieved.
+MCTS will continue to cycle through these phases until it is stopped, or an `execution budget is reached' \cite{b6}. Three ways are presented to achieve this, each with their own detraction:
 \begin{itemize}
-  \item Time - cull MCTS after a certain amount of time has lapsed.
-  \item Depth - Stop MCTS after hit reaches a certain depth limit in the tree.
-  \item Iterations - Give it a predefined number of cycles, after which it will return a result. One cycle is all four phases of MCTS.
+  \item Time - cull MCTS after a certain amount of time has lapsed - if stopped to quickly may not evaluate nodes accurately.
+  \item Depth Culling- Stop MCTS after hit reaches a certain depth limit in the tree - stopping with depth may stop the search from ever reaching a terminal node.
+  \item Iteration Limit - Give it a predefined number of cycles, after which it will return a result. One cycle is all four phases of MCTS.
 \end{itemize}
 
-Depending on when or how MCTS is stopped will effect how good the estimation is of the action to take.
+Depending on when or how MCTS is stopped will effect how good the estimation is of the action to take. Using depth culling or an iteration limit is useful when comparing algorithms across inconsistent hardware and programming languages.
 
 \subsection{Previous Work}
 MCTS has received much interest from researchers, becoming somewhat of an umbrella term covering any implementation of MCTS. Browne {\em et al} in \cite{b2} summarise the different MCTS implementations up to 2011.
 
-MCTS has been applied in co-operative scenarios \cite{b3}, Real-time games \cite{b2}, Non-deterministic games \cite{b4} and numerous non-game applications \cite{b2}.
+MCTS has been applied in co-operative scenarios \cite{b5}, Real-time games \cite{b2}, Non-deterministic games \cite{b7} and numerous non-game applications \cite{b2}.
 
-Game AI research used to focus on two-player zero-sum games of perfect information with alternating turns\cite{b2}, every two-player zero-sum game has a solution \cite{b5}. Two main ways of evaluating states in a minimax scenario is to use heuristics, or statistics. The statistics approach can utilise MCTS to run thousands of playouts to find the optimal strategy \cite{b5}.
+Game AI research used to focus on two-player zero-sum games of perfect information with alternating turns\cite{b2}, every two-player zero-sum game has a solution \cite{bartle}. Two main ways of evaluating states in a minimax scenario is to use heuristics, or statistics. The statistics approach can utilise MCTS to run thousands of playouts to find the optimal strategy \cite{bartle}.
 
 \section{Methodology}
 Noughts and Crosses is a two-player zero sum game, as mentioned previously it will always have a solution. A search tree for UCT can be constructed using a state-action model, where the state is the game board and the action is the move made. This will result in a new state. 
@@ -109,23 +111,30 @@ C. Browne, E. Powley, D. Whitehouse, S. Lucas, P. I. Cowling, P. Rohlfshagen, S.
 ``A Survey of Montro Carlo Tree Search Methods,'' 
 {\em IEEE Transactions on Computational Intelligence and AI in Games}, Vol. 4, 2012.
 
-\bibitem{b3}
-P. R. Williams, J. Walton-Rivers, D. Perez-Liebana, S. M. Lucas, ``Monte Carlo Tree Search Applied to Co-operative Problems,'' {\em 2015 7th Computer Science and Electronic Engineering Conference (CEEC)}.
+\bibitem{bartle}
+R. A. Bartle ``Game Theory,'' {\em CE810 Game Design Lecture 5}, 6 November 2018. 
 
 \bibitem{b4}
+C. Browne, E. Powley, D. Whitehouse, S. Lucas, P. I. Cowling, P. Rohlfshagen, S. Taverner, D. Perez, S. Samothrakis, S. Colton,  
+``EvoMCTS: A Scalable Approach for General Game Learning,'' 
+{\em IEEE Transactions on Computational Intelligence and AI in Games}, Vol. 6, 2014.
+
+\bibitem{b5}
+P. R. Williams, J. Walton-Rivers, D. Perez-Liebana, S. M. Lucas, ``Monte Carlo Tree Search Applied to Co-operative Problems,'' {\em 2015 7th Computer Science and Electronic Engineering Conference (CEEC)}.
+
+\bibitem{b6}
+R. D. Gaina, S. M. Lucas, D. Perez-Liebana, ``Rolling Horizon Evolution Enhancements in General Video Game Playing, '' {\em IEEE Conference on Computational Intelligence and Games}, 2017.
+
+\bibitem{b7}
 P. I. Cowling, E. J. Powley, D. Whitehouse, 
 ``Information Set Monte Carlo Tree Search'' 
 {\em IEEE Transactions on Computational Intelligence and AI in Games}, Vol. 4, 2012.
 
-\bibitem{b5}
-R. A. Bartle ``Game Theory,'' {\em CE810 Game Design Lecture 5}, 6 November 2018. 
 
 %Unused references
-%\bibitem{b6}
+%\bibitem{b7}
 %M. C. Fu,
 %``Monte Carlo Tree Search: A Tutorial,'' 
 %{\em 2018 Winter Simulation Conference}, 2018.
-
 \end{thebibliography}
-
 \end{document}
