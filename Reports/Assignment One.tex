@@ -108,15 +108,23 @@ where $\overline{X_{j}}$ is the average reward from arm $j$, $n_{j}$ is the numb
 Reward $\overline{X_{j}}$ encourages exploitation of high-reward choices \cite{ucb1} and $\sqrt{\frac{2 \ln n}{2_{j}}}$ encourages exploration of less visited actions \cite{b2}.
 
 \subsubsection{Upper Confidence Bounds for Trees}
-Upper Confidence Bounds for Trees (UCT) is a well known and popular algorithm in the MCTS family \cite{b2}. Kocis and Szepesvari \cite{kocsze} proposed applying UCB1 to MCTS, using UCB1 as the tree policy \cite{b2}.
+The result of combining UCB1 and MCTS is UCT. Upper Confidence Bounds for Trees (UCT) is a well known and popular algorithm in the MCTS family \cite{b2}. Kocis and Szepesvari \cite{kocsze} proposed applying UCB1 to MCTS, using UCB1 as the tree policy \cite{b2}.
 
 UCB1 is efficient and simple \cite{b2} and a `promising candidate to address the exploration-exploitation dilemma in MCTS' \cite{b2}.
 
-Treating the selection of a child node as a multi-armed bandit problem, using Monte Carlo simulations the the `expected reward can be approximated'. Just as a node can be viewed as a multi-armed bandit problem so to can an action to be selected. Rreated as an independent multi-armed bandit problem the child node $j$ is selected to maximise \cite{b2}:
-\[UCT = \overline{X_{j}} +2C_{p}\sqrt{\frac{2 \ln n}{n_{j}}}\]
-where $C_{p}$ is a constant.
+Treating the selection of a child node as a multi-armed bandit problem, using Monte Carlo simulations the the `expected reward can be approximated'. Just as a node can be viewed as a multi-armed bandit problem so to can an action to be selected. Treated as an independent multi-armed bandit problem the child node $j$ is selected to maximise \cite{b2}:
 
-The result of combining UCB1 and MCTS is UCT.
+\[UCT = \overline{X_{j}} +2C_{p}\sqrt{\frac{2 \ln n}{n_{j}}}\]
+
+where $C_{p}$ is a constant. The value of $C_{p}$ can be adjusted to increase or decrease the amount of exploration MCTS does, however a default value of $C_{p} = \frac{1}{\sqrt{2}}$ is commonly used \cite{b2}.
+
+%Balance between first, exploitation and second, exploration term.
+%As each node is visted the denominator of the exploration term is increased. Decreasing the contribution 
+%However if another child node is visted the numerator increases, increasing the exploration values of other child nodes
+%Exploration term ensures a zero-probability that a child node will fail to be explored on an appropriately long time-line
+
+%Each node has two values assigned to it, the number of visits $N_{(v)}$ and $Q_{(v)}$ is the reward of all playouts that passed though this node. Therefore $\frac{Q_{v}}{N_{v}}$ is an approximation of the nodes value.
+
 
 \section{Methodology}
 Noughts and Crosses is a two-player zero sum game, as mentioned previously it will always have a solution. A search tree for UCT can be constructed using a state-action model, where the state is the game board and the action is the move made. This will result in a new state. 
