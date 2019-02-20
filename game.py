@@ -398,11 +398,14 @@ def UCTPlayGame():
             victor = 'Nobody'
             draws += 1
 
-        run_count -= 1
+        run_count -= 1 
+        state = None
             #writer.writerow({'Victor' : victor})
-        print("Player one win count: " + str(p1_wins))
-        print("Player two win count: " + str(p2_wins))
-        print("Draw count: " + str(draws))
+    print("Player one win count: " + str(p1_wins))
+    print("Player two win count: " + str(p2_wins))
+    print("Draw count: " + str(draws))
+
+       
 
 if __name__ == "__main__":
     """ Play a single game to the end using UCT for both players. 

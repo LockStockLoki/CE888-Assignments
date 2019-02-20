@@ -124,10 +124,36 @@ Although Noughts and Crosses is not a complex game and situations with low rewar
 When collection of the data is complete and analysed it would be expected that a very high percentage of the games would end in a draw. Games routinely ending in a draw means that the agents have understood the state and how to minimax, as Noughts and Crosses will end in a draw if played perfectly \cite{qmuloxo}. It is only expected that an agent will win if the other agent makes a mistake.
 
 \section{Results}
+The first set of results from a thousand games show that player one won 3.3\% of the time and player two won 9.1\% of the time. This leaves an 87.6\% draw rate.
 
+\begin{center}
+	\begin{tabular}{||c c c c||}
+		\hline
+		 {} & Wins & Losses & Draws \\ [0.5ex] 
+		\hline\hline
+		Player One & 33 & 91 & 876\\
+		\hline
+		Player Two & 91 & 33 & 876\\
+	\end{tabular}
+\end{center}
 
+The second set of results show a similar phenomena, with player one winning again 33\% of the games and player two 8.4\% of the games.
+
+\begin{center}
+	\begin{tabular}{||c c c c||}
+		\hline
+		{} & Wins & Losses & Draws \\ [0.5ex] 
+		\hline\hline
+		Player One & 33 & 84 & 883\\
+		\hline
+		Player Two & 84 & 33 & 883\\
+	\end{tabular}
+\end{center}
 
 \section{Conclusion}
+This paper has shown what MCTS, UCB1 and UTC is and how it can be applied to GGP through its use in Noughts and Crosses.
+
+As predicted in section 4 and shown in section 5, the draw rate of the two agents is very high, combined they won a little over a tenth of the total games played.  
 
 \section{plan}
 
