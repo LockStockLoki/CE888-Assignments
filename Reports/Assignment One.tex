@@ -34,20 +34,20 @@ To be written.
 }
 
 \section{Introduction}
-Monte Carlo Tree Search (MCTS) has received much interest from researchers in multiple areas, including General Game Playing (GGP) \cite{b1},  where it has been used to great success.
+Monte Carlo Tree Search (MCTS) has received much interest from researchers in multiple areas, including General Game Playing (GGP) \cite{sironi},  where it has been used to great success.
 
-MCTS is an algorithm for returning a decision by creating a search tree of the domain, constructed by taking random samples of the search space. MCTS does not require domain knowledge to function although it may be helpful \cite{b2}.
+MCTS is an algorithm for returning a decision by creating a search tree of the domain, constructed by taking random samples of the search space. MCTS does not require domain knowledge to function although it may be helpful \cite{sironi}.
 
-Research into Game AI is important, prior to MCTS databases were used to hold all possible game states. An example of database is presented by \cite{b4}, a game of {\em American Checkers} in which there are 3.9x10$^{13}$ entries, or states. Decision trees used in GGP and General Video Game Playing (GVGP) suffer from dimensionality. 
+Research into Game AI is important, prior to MCTS databases were used to hold all possible game states. An example of database is presented by \cite{evomcts}, a game of {\em American Checkers} in which there are 3.9x10$^{13}$ entries, or states. Decision trees used in GGP and General Video Game Playing (GVGP) suffer from dimensionality. 
 
 A simple game, Noughts and Crosses has a branching factor of 4, and a full tree has 10 levels \cite{bartle}, compared with Chess which has a branching factor of 35 and rarely a full search tree \cite{bartle}. Noughts and Crosses has unique states numbering in the thousands, it is clear that crafting rules for each different state is not feasible, especially when the branching factor in other games used in GGP/GVGP can be in the hundreds. 
 
 Firstly this paper will look at what MCTS is and previous work conducted in the field of Game AI, specifically MCTS. Secondly MCTS will be used in a Noughts and Crosses (also known as Os and Xs, OXO and Tic-Tac-Toe).
 
 \subsection{Monte Carlo Tree Search}
-MCTS is a tree search algorithm that constructs an asymmetric search tree based on actions, the tree is a biased representation towards more promising areas of the search space \cite{b5}.
+MCTS is a tree search algorithm that constructs an asymmetric search tree based on actions, the tree is a biased representation towards more promising areas of the search space \cite{tinycoop}.
 
-Through self-play MCTS estimates the value of a node from that point until it reaches a terminal node \cite{b5}. A node is a state, and the action is the move made that results in that state.  
+Through self-play MCTS estimates the value of a node from that point until it reaches a terminal node \cite{tinycoop}. A node is a state, and the action is the move made that results in that state.  
 
 Each node might be visited multiple times having its value adjusted accordingly. A node that looks promising on the first run through could look less promising as it is visited more times, or become less promising in relation to other branches. 
 
@@ -58,7 +58,7 @@ Each node might be visited multiple times having its value adjusted accordingly.
   \item {\em Backpropogation} - After {\em Simulation} is complete the search tree is traversed in reverse order, propagating up the tree the result, updating the value of the nodes, this continues until the current node is the root node. The new values are then used in the {\em Selection} process.
 \end{enumerate}
 
-MCTS will continue to cycle through these phases until it is stopped, or an `execution budget is reached' \cite{b6}. Three ways are presented to achieve this, each with their own detraction:
+MCTS will continue to cycle through these phases until it is stopped, or an `execution budget is reached' \cite{rhea}. Three ways are presented to achieve this, each with their own detraction:
 \begin{itemize}
   \item Time - cull MCTS after a certain amount of time has lapsed - if stopped too quickly it may not evaluate nodes accurately.
   \item Depth Culling- Stop MCTS after hit reaches a certain depth limit in the tree - stopping with depth may stop the search from ever reaching a terminal node.
@@ -67,14 +67,14 @@ MCTS will continue to cycle through these phases until it is stopped, or an `exe
 
 Depending on when or how MCTS is stopped will effect how good the estimation is of the action to take. Using depth culling or an iteration limit is useful when comparing algorithms across inconsistent hardware and programming languages.
 
-\subsection{Previous Work}
-MCTS has received much interest from researchers, becoming somewhat of an umbrella term covering any implementation of MCTS. Browne {\em et al.} in \cite{b2} summarise the different MCTS implementations up to 2011.
+\section{Previous Work}
+MCTS has received much interest from researchers, becoming somewhat of an umbrella term covering any implementation of MCTS. Browne {\em et al.} in \cite{mctssurvey} summarised the different MCTS implementations and enhancements up to 2011.
 
-MCTS has been applied in co-operative scenarios \cite{b5}, Real-time games \cite{b2}, Non-deterministic games \cite{b7} and numerous non-game applications \cite{b2}.
+MCTS has been applied in co-operative scenarios \cite{tinycoop}, Real-time games \cite{mctssurvey}, Non-deterministic games \cite{ismcts} and numerous non-game applications \cite{mctssurvey}.
 
-Game AI research used to focus on two-player zero-sum games of perfect information with alternating turns\cite{b2}, every two-player zero-sum game has a solution \cite{bartle}. Two main ways of evaluating states in a minimax scenario is to use heuristics, or statistics. The statistics approach can utilise MCTS to run thousands of playouts to find the optimal strategy \cite{bartle}.
+Game AI research used to focus on two-player zero-sum games of perfect information with alternating turns\cite{mctssurvey}, every two-player zero-sum game has a solution \cite{bartle}. Two main ways of evaluating states in a minimax scenario is to use heuristics, or statistics. The statistics approach can utilise MCTS to run thousands of playouts to find the optimal strategy \cite{bartle}.
 
-\subsubsection{Upper Confidence Bounds}
+\subsection{Upper Confidence Bounds}
 UCB1 is a bandit algorithm with a logarithmic regret, proposed by Auer {\em et al.} \cite{ucb1}. In a multi-armed bandit problem the `empirically best action' should be taken as often as possible \cite{ucb1}. 
 
 However less explored options should not be ignored in favour of exploitation. Disregarding exploration may leave better actions unexplored and thus increase regret. 
@@ -84,29 +84,35 @@ UCB1 policy dictates that arm $j$ maximises the average reward \cite{ucb1}:
 
 where $\overline{X_{j}}$ is the average reward from arm $j$, $n_{j}$ is the number of times arm $j$ was played and $n$ is the total number of plays.
 
-Reward $\overline{X_{j}}$ encourages exploitation of high-reward choices \cite{ucb1} and $\sqrt{\frac{2 \ln n}{2_{j}}}$ encourages exploration of less visited actions \cite{b2}.
+Reward $\overline{X_{j}}$ encourages exploitation of high-reward choices \cite{ucb1} and $\sqrt{\frac{2 \ln n}{2_{j}}}$ encourages exploration of less visited actions \cite{mctssurvey}.
 
-\subsubsection{Upper Confidence Bounds for Trees}
-The result of combining UCB1 and MCTS is UCT. Upper Confidence Bounds for Trees (UCT) is a well known and popular algorithm in the MCTS family \cite{b2}. Kocis and Szepesvari \cite{kocsze} proposed applying UCB1 to MCTS, using UCB1 as the tree policy \cite{b2}.
+\subsection{Upper Confidence Bounds for Trees}
+The result of combining UCB1 and MCTS is UCT. Upper Confidence Bounds for Trees (UCT) is a well known and popular algorithm in the MCTS family \cite{mctssurvey}. Kocis and Szepesvari \cite{kocsze} proposed applying UCB1 to MCTS, using UCB1 as the tree policy \cite{mctssurvey}.
 
-UCB1 is efficient and simple \cite{b2} and a `promising candidate to address the exploration-exploitation dilemma in MCTS' \cite{b2}.
+UCB1 is efficient and simple \cite{mctssurvey} and a `promising candidate to address the exploration-exploitation dilemma in MCTS' \cite{mctssurvey}.
 
-Treating the selection of a child node as a multi-armed bandit problem, using Monte Carlo simulations the the `expected reward can be approximated'. Just as a node can be viewed as a multi-armed bandit problem so to can an action to be selected. Treated as an independent multi-armed bandit problem the child node $j$ is selected to maximise \cite{b2}:
+Treating the selection of a child node as a multi-armed bandit problem, using Monte Carlo simulations the the `expected reward can be approximated'. Just as a node can be viewed as a multi-armed bandit problem so to can an action to be selected. Treated as an independent multi-armed bandit problem the child node $j$ is selected to maximise \cite{mctssurvey}:
 
 \[UCT = \overline{X_{j}} +2C_{p}\sqrt{\frac{2 \ln n}{n_{j}}}\]
 
-where $C_{p}$ is a constant. The value of $C_{p}$ can be adjusted to increase or decrease the amount of exploration MCTS does, however a default value of $C_{p} = \frac{1}{\sqrt{2}}$ is commonly used \cite{b2}.
+where $C_{p}$ is a constant. The value of $C_{p}$ can be adjusted to increase or decrease the amount of exploration MCTS does, however a default value of $C_{p} = \frac{1}{\sqrt{2}}$ is commonly used \cite{mctssurvey}.
 
-%Balance between first, exploitation and second, exploration term.
-%As each node is visted the denominator of the exploration term is increased. Decreasing the contribution 
-%However if another child node is visted the numerator increases, increasing the exploration values of other child nodes
-%Exploration term ensures a zero-probability that a child node will fail to be explored on an appropriately long time-line
+UCT balances exploration and exploitation with the exploration term, $2C_{p}\sqrt{\frac{2 \ln n}{n_{j}}}$, where when the child node is selected the numerator increases making it less attractive to select again. However when a sibling is landed on the numerator increases, increasing the probability that the child node will be selected. The exploration term ensures that a child node will be explored by giving it a non-zero probability of selection \cite{mctssurvey}.
 
-%Each node has two values assigned to it, the number of visits $N_{(v)}$ and $Q_{(v)}$ is the reward of all playouts that passed though this node. Therefore $\frac{Q_{v}}{N_{v}}$ is an approximation of the nodes value.
+Each node in UCT has four pieces of information associated with it, the state, incoming action, visit count and reward \cite{mctssurvey}. The state is a result of the incoming action, a state-action pair.  The number of visits, $N_{(v)}$, is a counter of how many times that node has been selected. Reward,  $Q_{(v)}$, is the value of all playouts that passed though this node, therefore $\frac{Q_{(v)}}{N_{(v)}}$ is an approximation of the node's value.
+
+When a playout is complete {\em Backpropogation} will update $N_{(v)}$ and  $Q_{(v)}$ for each node with the new values.
+
 
 
 \section{Methodology}
-Noughts and Crosses is a two-player zero sum game, as mentioned previously it will always have a solution. A search tree for UCT can be constructed using a state-action model, where the state is the game board and the action is the move made. This will result in a new state. 
+Noughts and Crosses is a two-player zero sum game, as mentioned previously it will always have a solution. To determine the best move an agent can take UCT will be used. 
+
+UCT will function well in this environment because Noughts and Crosses has full observability, presenting the Markov Property.    
+
+A search tree for UCT can be constructed using a state-action model, where the state is the game board and the action is the move made. This will result in a new state. 
+
+
 
 \section{Experiments}
 \section{Results}
@@ -115,38 +121,51 @@ Noughts and Crosses is a two-player zero sum game, as mentioned previously it wi
 
 \begin{thebibliography}{9}
 
-\bibitem{b1}
+\bibitem{sironi}%1
 C. F. Sironi, J. Liu, D. Perez-Liebana, R. D. Gaina, I. Bravi, S. M. Lucas, M. H, M. Winands, ``Self-Adaptive MCTS for General Video Game Playing''. 
 
-\bibitem{b2}
+\bibitem{evomcts}%2
+A. Benbassat, M. Sipper
+``EvoMCTS: A Scalable Approach for General Game Learning,'' 
+{\em IEEE Transactions on Computational Intelligence and AI in Games}, Vol. 6, 2014.
+
+\bibitem{bartle}%3
+R. A. Bartle ``Game Theory,'' {\em CE810 Game Design Lecture 5}, 6 November 2018. 
+
+\bibitem{tinycoop}%4
+P. R. Williams, J. Walton-Rivers, D. Perez-Liebana, S. M. Lucas, ``Monte Carlo Tree Search Applied to Co-operative Problems,'' {\em 2015 7th Computer Science and Electronic Engineering Conference (CEEC)}.
+
+\bibitem{rhea}%5
+R. D. Gaina, S. M. Lucas, D. Perez-Liebana, ``Rolling Horizon Evolution Enhancements in General Video Game Playing, '' {\em IEEE Conference on Computational Intelligence and Games}, 2017.
+
+\bibitem{mctssurvey}%6
 C. Browne, E. Powley, D. Whitehouse, S. Lucas, P. I. Cowling, P. Rohlfshagen, S. Taverner, D. Perez, S. Samothrakis, S. Colton,  
 ``A Survey of Montro Carlo Tree Search Methods,'' 
 {\em IEEE Transactions on Computational Intelligence and AI in Games}, Vol. 4, 2012.
 
-\bibitem{bartle}
-R. A. Bartle ``Game Theory,'' {\em CE810 Game Design Lecture 5}, 6 November 2018. 
-
-\bibitem{ucb1}
-P. Auer, N. Cesa-Bianchi, P. Fischer, ``Finite-Time Analysis of the Multiarmed Bandit Problem,'' {\em Machine Learning}, Vol. 47, 2002.
-
-\bibitem{kocsze}
-L. Kocsis, C. Szepesvari, ``Bandit Based Monte-Carlo Planning'' 
-
-\bibitem{b4}
-C. Browne, E. Powley, D. Whitehouse, S. Lucas, P. I. Cowling, P. Rohlfshagen, S. Taverner, D. Perez, S. Samothrakis, S. Colton,  
-``EvoMCTS: A Scalable Approach for General Game Learning,'' 
-{\em IEEE Transactions on Computational Intelligence and AI in Games}, Vol. 6, 2014.
-
-\bibitem{b5}
-P. R. Williams, J. Walton-Rivers, D. Perez-Liebana, S. M. Lucas, ``Monte Carlo Tree Search Applied to Co-operative Problems,'' {\em 2015 7th Computer Science and Electronic Engineering Conference (CEEC)}.
-
-\bibitem{b6}
-R. D. Gaina, S. M. Lucas, D. Perez-Liebana, ``Rolling Horizon Evolution Enhancements in General Video Game Playing, '' {\em IEEE Conference on Computational Intelligence and Games}, 2017.
-
-\bibitem{b7}
+\bibitem{ismcts}%7
 P. I. Cowling, E. J. Powley, D. Whitehouse, 
 ``Information Set Monte Carlo Tree Search'' 
 {\em IEEE Transactions on Computational Intelligence and AI in Games}, Vol. 4, 2012.
+
+
+
+
+
+
+\bibitem{ucb1}%8
+P. Auer, N. Cesa-Bianchi, P. Fischer, ``Finite-Time Analysis of the Multiarmed Bandit Problem,'' {\em Machine Learning}, Vol. 47, 2002.
+
+\bibitem{kocsze}%9
+L. Kocsis, C. Szepesvari, ``Bandit Based Monte-Carlo Planning'' 
+
+
+
+
+
+
+
+
 
 
 %Unused references
