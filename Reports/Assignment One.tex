@@ -1,36 +1,14 @@
-%template for producing IEEE-format articles using LaTeX.
-%written by Matthew Ward, CS Department, Worcester Polytechnic Institute.
-%use at your own risk.  Complaints to /dev/null.
-%make two column with no page numbering, default is 10 point
-\documentstyle[twocolumn]{article}
-\pagestyle{empty}
-
-%set dimensions of columns, gap between columns, and space between paragraphs
-\setlength{\textheight}{8.75in}
-\setlength{\columnsep}{2.0pc}
-\setlength{\textwidth}{6.8in}
-\setlength{\footheight}{0.0in}
-\setlength{\topmargin}{0.25in}
-\setlength{\headheight}{0.0in}
-\setlength{\headsep}{0.0in}
-\setlength{\oddsidemargin}{-.19in}
-\setlength{\parindent}{1pc}
-
-\makeatletter
-
-\def\@normalsize{\@setsize\normalsize{12pt}\xpt\@xpt
-\abovedisplayskip 10pt plus2pt minus5pt\belowdisplayskip \abovedisplayskip
-\abovedisplayshortskip \z@ plus3pt\belowdisplayshortskip 6pt plus3pt
-minus3pt\let\@listi\@listI} 
-
-\def\subsize{\@setsize\subsize{12pt}\xipt\@xipt}
-
-\def\section{\@startsection {section}{1}{\z@}{24pt plus 2pt minus 2pt}
-{12pt plus 2pt minus 2pt}{\large\bf}}
-
-\def\subsection{\@startsection {subsection}{2}{\z@}{12pt plus 2pt minus 2pt}
-{12pt plus 2pt minus 2pt}{\subsize\bf}}
-\makeatother
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 \begin{document}
 \date{}
@@ -38,11 +16,12 @@ minus3pt\let\@listi\@listI}
 %make title bold and 14 pt font (Latex default is non-bold, 16 pt)
 \title{\Large\bf MCTS}
 
-\author{Robert Marc James-Stroud \\
-School of Computer Science and Electronic Engineering \\
-University of Essex \\
+\author{\IEEEauthorblockN{Robert Marc James-Stroud}
+\IEEEauthorblockA{\textit{School of Computer Science and Electronic Engineering} \\
+\textit{University of Essex}\\
 Colchester, UK \\
 Email: rj18801@essex.ac.uk}
+}
  
 \maketitle
 \thispagestyle{empty}
