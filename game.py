@@ -19,6 +19,7 @@
 
 from math import *
 import random
+import csv
 
 class GameState:
     """ A state of the game, i.e. the game board. These are the only functions which are
@@ -359,9 +360,9 @@ def UCT(rootstate, itermax, verbose = False):
     # Output some information about the tree - can be omitted
     if (verbose): print(rootnode.TreeToString(0))
     else: print(rootnode.ChildrenToString())
-
+        
     return sorted(rootnode.childNodes, key = lambda c: c.visits)[-1].move # return the move that was most visited
-                
+
 def UCTPlayGame():
     """ Play a sample game between two UCT players where each player gets a different number 
         of UCT iterations (= simulations = tree nodes).
@@ -369,19 +370,29 @@ def UCTPlayGame():
     # state = OthelloState(4) # uncomment to play Othello on a square board of the given size
     state = OXOState() # uncomment to play OXO
     #state = NimState(15) # uncomment to play Nim with the given number of starting chips
+    
+
+
     while (state.GetMoves() != []):
         print(str(state))
         if state.playerJustMoved == 1:
-            m = UCT(rootstate = state, itermax = 1000, verbose = True) # play with values for itermax and verbose = True
+            m = UCT(rootstate = state, itermax = 1000, verbose = False) # play with values for itermax and verbose = True
+            
         else:
             m = UCT(rootstate = state, itermax = 100, verbose = False)
         print("Best Move: " + str(m) + "\n")
+
         state.DoMove(m)
     if state.GetResult(state.playerJustMoved) == 1.0:
         print("Player " + str(state.playerJustMoved) + " wins!")
+        victor = "Player " + str(state.playerJustMoved)
     elif state.GetResult(state.playerJustMoved) == 0.0:
         print("Player " + str(3 - state.playerJustMoved) + " wins!")
-    else: print("Nobody wins!")
+        victor =  "Player " + str(3 - state.playerJustMoved)
+    else: 
+        print("Nobody wins!")
+        victor = 'Nobody'
+        
 
 if __name__ == "__main__":
     """ Play a single game to the end using UCT for both players. 
