@@ -16,7 +16,7 @@
 \date{}
 
 %make title bold and 14 pt font (Latex default is non-bold, 16 pt)
-\title{\Large\bf MCTS}
+\title{\Large\bf UTC in Noughts and Crosses: Reinforcement Learning}
 
 \author{\IEEEauthorblockN{Robert Marc James-Stroud}
 \IEEEauthorblockA{\textit{School of Computer Science and Electronic Engineering} \\
@@ -31,7 +31,7 @@ Email: rj18801@essex.ac.uk}
 \subsection*{\centering Abstract}
 %IEEE allows italicized abstract
 {\em
-To be written.  
+Machine learning is a hot topic at the moment, with research being conducted in both GGP and GVGP as well as other areas. Having a machine learn the most optimal action  
 %end italics mode
 }
 
@@ -137,7 +137,7 @@ The first set of results from a thousand games show that player one won 3.3\% of
 	\end{tabular}
 \end{center}
 
-The second set of results show a similar phenomena, with player one winning again 33\% of the games and player two 8.4\% of the games.
+The second set of results show a similar phenomena, with player one winning again 3.3\% of the games and player two 8.4\% of the games.
 
 \begin{center}
 	\begin{tabular}{||c c c c||}
@@ -150,10 +150,25 @@ The second set of results show a similar phenomena, with player one winning agai
 	\end{tabular}
 \end{center}
 
+A third set of results show a similar story. 3.3\% win rate on player one and 8.1\% for player two. 
+
+\begin{center}
+	\begin{tabular}{||c c c c||}
+		\hline
+		{} & Wins & Losses & Draws \\ [0.5ex] 
+		\hline\hline
+		Player One & 33 & 81 & 886\\
+		\hline
+		Player Two & 81 & 33 & 886\\
+	\end{tabular}
+\end{center}
+
 \section{Conclusion}
 This paper has shown what MCTS, UCB1 and UTC is and how it can be applied to GGP through its use in Noughts and Crosses.
 
-As predicted in section 4 and shown in section 5, the draw rate of the two agents is very high, combined they won a little over a tenth of the total games played.  
+As predicted in section 4 and shown in section 5, the draw rate of the two agents is very high, combined they won a little over a tenth of the total games played.
+
+This is because the more time a node is selected for playout the more confident the algorithm is about the theoretical value that node has. Usually the most visited node will be the node with the highest value, and this is the action the agent is likely to select when asked what the best node is.   
 
 \section{plan}
 

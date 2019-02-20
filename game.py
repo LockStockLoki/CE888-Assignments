@@ -367,7 +367,7 @@ def UCTPlayGame():
     """ Play a sample game between two UCT players where each player gets a different number 
         of UCT iterations (= simulations = tree nodes).
     """
-    run_count = 1000
+    run_count = 10000
     p1_wins = 0
     p2_wins = 0
     draws = 0
