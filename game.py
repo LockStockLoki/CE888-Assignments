@@ -405,8 +405,6 @@ def UCTPlayGame():
     print("Player two win count: " + str(p2_wins))
     print("Draw count: " + str(draws))
 
-       
-
 if __name__ == "__main__":
     """ Play a single game to the end using UCT for both players. 
     """
