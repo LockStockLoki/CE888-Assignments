@@ -31,4 +31,17 @@ T.~Anthony, Z.~Tian, and D.~Barber, ``Thinking fast and slow with deep learning
   Available: \url{http://arxiv.org/abs/1705.08439}
 \BIBentrySTDinterwordspacing
 
+\bibitem{huiil}
+J.~Hui.
+
+\bibitem{go}
+D.~Silver, J.~Schrittwieser, K.~Simonyan, I.~Antonoglou, A.~Huang, A.~Guez,
+  T.~Hubert, L.~Baker, M.~Lai, A.~Bolton \emph{et~al.}, ``Mastering the game of
+  go without human knowledge,'' \emph{Nature}, vol. 550, no. 7676, p. 354,
+  2017.
+
+\bibitem{dualprocess}
+J.~S.~B. Evans, ``Heuristic and analytic processes in reasoning,''
+  \emph{British Journal of Psychology}, vol.~75, no.~4, pp. 451--468, 1984.
+
 \end{thebibliography}

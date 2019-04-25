@@ -1,10 +1,19 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Assignment Two.aux
 The style file: IEEEtran.bst
 Database file #1: bib.bib
+I was expecting a `,' or a `}'---line 43 of file bib.bib
+ :  
+ :  title = {RL — Imitation Learning},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+"}" immediately follows an entry type---line 45 of file bib.bib
+ :  url = {https://medium.com/@jonathan_hui/rl-imitation-learning-ac28116c02fc
+ :                                                                            },
+I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 Warning--empty journal in ggp2005l
 
 Done.
-(There was 1 warning)
+(There were 2 error messages)

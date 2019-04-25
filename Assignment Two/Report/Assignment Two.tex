@@ -52,8 +52,13 @@ Humans approaching a game for the first time use two kinds of thinking - dual pr
 Reinforcement learning (RL) agents take actions without looking ahead and tree searches, to determine the best action must evaluate branches, with even simple games like OXO having a high branching factor. Expert Iteration uses MCTS to train a neural network, which in turn guides the tree search \cite{ExpertIteration}.  
 
 \section{Background}
+Supervised learning has been common place in AI, using datasets provided by human experts which agents will then try to replicate. Having humans involved in deployment of agents, according to Hui is troublesome \cite{huiil}. Therefore it is advisable to remove the human bias from training in all aspects. The benefit of this is two-fold, not only is the human removed from the agent, the agent will also be able to discover non-human approaches which might be of more strategic value than imitating and trying to beat a human based agent. Another benefit to using non-human expert datasets is that expert human datasets are `often expensive, unreliable or simply unavailable'\cite{go}.
+
+If the human datasets are available. and considered reliable; using them provides a ceiling on the performance of an agent. RL removes this by being trained on their own experience, allowing them to surpass human expertise \cite{go}.  
+
 Expert Iteration mimics the human learning process dual-process theory. Dual-process theory has two processes an automatic implicit happening at the subconscious level, and an explicit conscious logical and reasoning process. Humans when first encountering a new game exploit both processes \cite{dualprocess}.       
 
+Both \cite{ExpertIteration} and \cite{go} use a very similar RL process to training their agents.
 
 \section{Methodology}
 
