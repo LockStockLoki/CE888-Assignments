@@ -56,17 +56,30 @@ Supervised learning has been common place in AI, using datasets provided by huma
 
 If the human datasets are available. and considered reliable; using them provides a ceiling on the performance of an agent. RL removes this by being trained on their own experience, allowing them to surpass human expertise \cite{go}.  
 
-Expert Iteration mimics the human learning process dual-process theory. Dual-process theory has two processes an automatic implicit happening at the subconscious level, and an explicit conscious logical and reasoning process. Humans when first encountering a new game exploit both processes \cite{dualprocess}.       
+Both \cite{ExpertIteration} and \cite{go} use a very similar RL process to training their agents. \cite{ExpertIteration} coined the term Expert Iteration (ExIt). Expert Iteration mimics the human learning process, dual-process theory. Dual-process theory has two processes. An automatic implicit happening at the subconscious level - intuition, and an explicit conscious logical and reasoning process. Humans when first encountering a new game exploit both processes \cite{dualprocess}.
 
-Both \cite{ExpertIteration} and \cite{go} use a very similar RL process to training their agents.
+Imitation Learning (IL) focuses on copying an expert demonstrations \cite{huiil}. Previously stated in this report is that humans are not a desirable component in the training of these agents, therefore an expert will need a form of intuition to be able to provide a demonstration the neural network can imitate. \cite{ExpertIteration} and \cite{go} use MCTS as their expert agent, MCTS is suited for this as it will simulate as many state-actions as it can before reaching an execution budget, this lookahead eliminates part of the problem with neural networks - neural networks do not \cite{ExpertIteration}. 
 
+System 1 in dual-process theory can be thought of as a heuristic based process. MCTS is heuristics based therefore is an ideal candidate for this. Other tree search algorithms are available: Monte Carlo, $\alpha$-$\beta$ or a greedy search \cite{ExpertIteration}. A greedy search is not ideal for looking ahead at future states as it will take the highest value move it can take now, ignoring potentially better nodes that might exist further down the tree on another branch.
+
+$\alpha$-$\beta$ pruning seeks to limit the search space by cutting off parts that do not look promising early, part of the training is giving the neural network examples of bad play which by cutting off poor actions early, $\alpha$-$\beta$ does not do.
+
+MCTS on the other hand over time converges on mini-max, while still exploring some poor state-action pairs, which can be stored for future use by the neural network as an example of what not to do. MCTS given enough time will find a good move if one exists. 
+
+IL revolves around having an expert, which for \cite{ExpertIteration} and \cite{go} is MCTS (probably UCT) and an apprentice, the neural network that will aid in evaluating state-action pair determined from the expert. As training the neural network continues it will effectively generalise the policy determined by MCTS, with corrections to inaccurate intuitions \cite{ExpertIteration}.
+
+The policy network is capable of biasing the search towards promising areas of the search space through modification to the UCT formula through addition of a bonus \cite{ExpertIteration}. 
+   
 \section{Methodology}
+Instead of using a policy network to evaluate a state-action value, this project seeks a classifier which can be created quickly. Neural networks cannot be trained quickly so are not suitable for this purpose. However with the modern hardware MCTS can quickly establish good and bad moves, building a decision tree which can be used to do essentially the policy network's job in ExIt and Alpha Go Zero. 
 
 \section{Experiments}
-
-\section{Discussion}
+The first experiment run was generating some base data to compare with which future experiments could be compared. Over ten thousand games of OXO were played with two UCT agents, agent one having 1000 iterations and agent two 100. The effectiveness of UCT is present in this data, with over 90\% of the games ending in a draw as can be determined from the logs of each game. Agent one had a 7\% victory rate, with agent two losing all games that did not end in a draw. 
 
 \section{Conclusion}
+Decision trees would be an effective policy for agents that are facing a game for the first time. The policy can be quickly built without domain knowledge through experimentation of state-action pairs using MCTS. The action from a state can be recorded and turned into a decision tree to bias future searches towards more promising areas of the search space, eliminating wasted search time increasing the effectiveness of both the poly, the decision tree and MCTS, creating a closed learning loop.
+
+This fully eliminates any human interference with the learning process, allowing for super-human capabilities as described by \cite{go}. 
 
 \bibliographystyle{IEEEtran}
 \bibliography{bib}
