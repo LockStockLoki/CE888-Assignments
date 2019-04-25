@@ -1,0 +1,70 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\RequirePackage{graphics}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+\date{}
+
+%make title bold and 14 pt font (Latex default is non-bold, 16 pt)
+\title{\Large\bf Expert Iteration in OXO using UCT as an Expert Agent}
+
+\author{\IEEEauthorblockN{Robert Marc James-Stroud}
+\IEEEauthorblockA{\textit{School of Computer Science and Electronic Engineering} \\
+\textit{University of Essex}\\
+Colchester, UK \\
+Email: rj18801@essex.ac.uk}
+}
+ 
+\maketitle
+\thispagestyle{empty}
+
+\subsection*{\centering Abstract}
+%IEEE allows italicized abstract
+{\em
+
+%end italics mode
+}
+
+\section{Introduction}
+General Game Playing (GGP) is a field of research in AI involving programs that play games such as chess and Go \cite{ggp2005l}. Historically GGP focuses on two-player zero sum games with finite states. Programs developed for playing games used to be specialised (Deep Blue), only able to play that one game often with handcrafted rules.
+
+Programs such as Deep Blue have little value in AI research, they are able to evaluate a state for one game only before making a decision about the moves \cite{ggp2005l}. However more recently researchers have begun developing AI agents that are able to take a ruleset and state at runtime and play games to successful completion. Genesereth describes general game players as: 
+
+\begin{quotation}
+	\noindent`\emph{Systems able to accept descriptions of arbitrary games at runtime and able to use such descriptions to play those games effectively without human intervention}'\cite{ggp2005l} 
+\end{quotation}
+
+As general game playing agents are unable to predetermine any policies about the game it is going to be playing, it is essential that a classifier is determined quickly, an algorithm that has seen great success in this area is Monte Carlo Tree Search (MCTS).
+Neural networks on the other hand are not trained quickly, they require lots of training data until they can output a result with high success.
+
+Humans approaching a game for the first time use two kinds of thinking - dual process theory. The first aspect of this system is a fast thinking, intuition. The second aspect is slow thinking, reasoning \cite{ExpertIteration}. Exploiting dual processes theory for should result in strong agents independently trained from human influence removing any human play bias from the agents learning.
+
+Reinforcement learning (RL) agents take actions without looking ahead and tree searches, to determine the best action must evaluate branches, with even simple games like OXO having a high branching factor. Expert Iteration uses MCTS to train a neural network, which in turn guides the tree search \cite{ExpertIteration}.  
+
+\section{Background}
+Expert Iteration mimics the human learning process dual-process theory. Dual-process theory has two processes an automatic implicit happening at the subconscious level, and an explicit conscious logical and reasoning process. Humans when first encountering a new game exploit both processes \cite{dualprocess}.       
+
+
+\section{Methodology}
+
+\section{Experiments}
+
+\section{Discussion}
+
+\section{Conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{bib}
+
+
+\end{document}
